@@ -1,31 +1,33 @@
-import random
+import randomGenerator
 from point import Point
+
+
+def closestPairBruteForce(listOfPoints):
+    # Menentukan Closest Pair dengan Brute Force
+    # Digunakan untuk Uji Coba
+    closestDistance = -1
+    indexPoint1 = -1
+    indexPoint2 = -1
+    for i in range(len(listOfPoints) - 1):
+        for j in range(i + 1, len(listOfPoints)):
+            dist = listOfPoints[i].distanceBetween(listOfPoints[j])
+            if closestDistance == -1 or dist < closestDistance:
+                closestDistance = dist
+                indexPoint1 = i
+                indexPoint2 = j
+    return indexPoint1, indexPoint2, closestDistance
+
 
 if __name__ == "__main__":
     dim = int(input("Masukkan dimensi titik: "))
     num = int(input("Masukkan jumlah titik: "))
 
-    listPoint = []
-    for i in range(num):
-        coordinates = []
-        for j in range(dim):
-            coordinates += [random.randint(0, 10)]
-        listPoint += [Point(coordinates)]
+    listOfPoints = randomGenerator.generateRandomPoints(num, dim)
+    ip1, ip2, closestDistance = closestPairBruteForce(listOfPoints)
 
-    closestDistance = -1
-    ip1 = -1
-    ip2 = -1
-    for i in range(num - 1):
-        for j in range(i + 1, num):
-            dist = listPoint[i].distanceBetween(listPoint[j])
-            if closestDistance == -1 or dist < closestDistance:
-                closestDistance = dist
-                ip1 = i
-                ip2 = j
-
-    for p in listPoint:
+    for p in listOfPoints:
         print(p)
 
     print(f"\nClosest Pair:")
-    print(listPoint[ip1], listPoint[ip2])
+    print(listOfPoints[ip1], listOfPoints[ip2])
     print(closestDistance)
