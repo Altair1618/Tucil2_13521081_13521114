@@ -23,6 +23,9 @@ class Point:
             val += (self.coordinates[i] - other.coordinates[i]) ** 2
 
         return val ** 0.5
+    
+    def getCoordinateValue(self, index):
+        return self.coordinates[index]
 
 
 if __name__ == "__main__":
