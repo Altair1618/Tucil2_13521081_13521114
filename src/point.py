@@ -26,6 +26,11 @@ class Point:
     
     def getCoordinateValue(self, index):
         return self.coordinates[index]
+    
+    def getCoor(self):
+        return (self.coordinates[0], self.coordinates[1], self.coordinates[2])
+    
+
 
 
 if __name__ == "__main__":
