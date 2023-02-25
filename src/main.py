@@ -1,6 +1,7 @@
 import randomGenerator
 import bruteforce
 import dnc
+from point import Point
 
 
 if __name__ == "__main__":
@@ -24,5 +25,3 @@ if __name__ == "__main__":
     print("Hasil Divide and Conquer:")
     print(dncPairs[0], dncPairs[1])
     print(dncClosestDistance)
-
-    print(bfClosestDistance == dncClosestDistance)

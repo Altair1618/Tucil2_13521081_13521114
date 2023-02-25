@@ -3,13 +3,13 @@ import randomGenerator
 
 
 def closestPair(listOfPoints):
-    global sortIndex
-
     # Base Case
     if len(listOfPoints) <= 3:
         return bruteforce.closestPairBruteForce(listOfPoints)
 
     # Recursive Case
+    # Sort by x values
+    listOfPoints.sort(key=lambda p: p.getCoordinateValue(0))
 
     # Get The Middle Points
     midIndex = len(listOfPoints) // 2
@@ -23,7 +23,7 @@ def closestPair(listOfPoints):
     rightPair, rightDistance = closestPair(rightPoints)
 
     # Get Minimum Distance from Both Closest Pair
-    bestPair = leftPair if leftDistance > rightDistance else rightPair
+    bestPair = leftPair if leftDistance < rightDistance else rightPair
     minDist = min(leftDistance, rightDistance)
 
     # Get the Absis Coordinate of the Center
@@ -41,7 +41,7 @@ def closestPair(listOfPoints):
     # Merging Process
     for i in range(len(candidatePoints) - 1):
         for j in range(i + 1, len(candidatePoints)):
-            if candidatePoints[j].getCoordinateValue(1) - candidatePoints[i].getCoordinateValue(1) < minDist:
+            if candidatePoints[j].getCoordinateValue(1) - candidatePoints[i].getCoordinateValue(1) >= minDist:
                 break
             temp = candidatePoints[i].distanceBetween(candidatePoints[j])
             if temp < minDist:
