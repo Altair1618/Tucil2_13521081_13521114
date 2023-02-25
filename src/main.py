@@ -15,7 +15,14 @@ if __name__ == "__main__":
         print(p)
     print()
 
-    bfPoint1, bfPoint2, bfClosestDistance = bruteforce.closestPairBruteForce(listOfPoints)
+    bfPairs, bfClosestDistance = bruteforce.closestPairBruteForce(listOfPoints)
     print("Hasil Brute Force:")
-    print(listOfPoints[bfPoint1], listOfPoints[bfPoint2])
+    print(bfPairs[0], bfPairs[1])
     print(bfClosestDistance)
+
+    dncPairs, dncClosestDistance = dnc.closestPair(listOfPoints)
+    print("Hasil Divide and Conquer:")
+    print(dncPairs[0], dncPairs[1])
+    print(dncClosestDistance)
+
+    print(bfClosestDistance == dncClosestDistance)
