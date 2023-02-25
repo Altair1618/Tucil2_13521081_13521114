@@ -1,24 +1,54 @@
 import bruteforce
 import randomGenerator
-from point import Point
-
-
-def getX(point):
-    return point.coordinates[0]
 
 
 def closestPair(listOfPoints):
+    global sortIndex
+
+    # Base Case
     if len(listOfPoints) <= 3:
         return bruteforce.closestPairBruteForce(listOfPoints)
-    midIndex = len(listOfPoints) / 2
-    midPoint = listOfPoints[midIndex]
-    ip11, ip12, distLeft = closestPair(listOfPoints[:mid])
-    ip21, ip22, distRight = closestPair(listOfPoints[mid:])
-    min_dist = min(distLeft, distRight)
-    strip = []
-    for i in range(len(listOfPoints)):
-        if abs(getX(listOfPoints[i]) - getX(midPoint)) < min_dist:
-            strip += listOfPoints[i]
+
+    # Recursive Case
+
+    # Get The Middle Points
+    midIndex = len(listOfPoints) // 2
+
+    # Get Divided Points
+    leftPoints = listOfPoints[:midIndex]
+    rightPoints = listOfPoints[midIndex:]
+
+    # Get Closest Pair in Both Side
+    leftPair, leftDistance = closestPair(leftPoints)
+    rightPair, rightDistance = closestPair(rightPoints)
+
+    # Get Minimum Distance from Both Closest Pair
+    bestPair = leftPair if leftDistance > rightDistance else rightPair
+    minDist = min(leftDistance, rightDistance)
+
+    # Get the Absis Coordinate of the Center
+    centerAbsis = (leftPoints[-1].getCoordinateValue(0) + rightPoints[0].getCoordinateValue(0)) / 2
+
+    # Filter the Points That Distance to Center Smaller than min_dist
+    candidatePoints = []
+    for p in listOfPoints:
+        if abs(p.getCoordinateValue(0) - centerAbsis) < minDist:
+            candidatePoints += [p]
+
+    # Sort by y value
+    candidatePoints.sort(key=lambda p: p.getCoordinateValue(1))
+
+    # Merging Process
+    for i in range(len(candidatePoints) - 1):
+        for j in range(i + 1, len(candidatePoints)):
+            if candidatePoints[j].getCoordinateValue(1) - candidatePoints[i].getCoordinateValue(1) < minDist:
+                break
+            temp = candidatePoints[i].distanceBetween(candidatePoints[j])
+            if temp < minDist:
+                minDist = temp
+                bestPair = [candidatePoints[i], candidatePoints[j]]
+
+    return bestPair, minDist
 
 
 if __name__ == "__main__":
@@ -27,12 +57,7 @@ if __name__ == "__main__":
 
     listOfPoints = randomGenerator.generateRandomPoints(num, dim)
 
-    sortedList = sorted(listOfPoints, key=getX)
-    indexPoint1, indexPoint2, list = closestPair(listOfPoints)
     # ip1, ip2, closestDistance = closestPair(listOfPoints)
-
-    for p in list:
-        print(p)
 
     # print(f"\nClosest Pair:")
     # print(listOfPoints[ip1], listOfPoints[ip2])
