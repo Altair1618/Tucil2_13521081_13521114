@@ -1,5 +1,6 @@
 import randomGenerator
 
+euclidCntBF = 0
 
 def closestPairBruteForce(listOfPoints):
     # Menentukan Closest Pair dengan Brute Force
@@ -7,9 +8,11 @@ def closestPairBruteForce(listOfPoints):
     closestDistance = -1
     indexPoint1 = -1
     indexPoint2 = -1
+    global euclidCntBF
     for i in range(len(listOfPoints) - 1):
         for j in range(i + 1, len(listOfPoints)):
             dist = listOfPoints[i].distanceBetween(listOfPoints[j])
+            euclidCntBF += 1
             if closestDistance == -1 or dist < closestDistance:
                 closestDistance = dist
                 indexPoint1 = i
@@ -22,11 +25,9 @@ if __name__ == "__main__":
     num = int(input("Masukkan jumlah titik: "))
 
     listOfPoints = randomGenerator.generateRandomPoints(num, dim)
-    closestPair, closestDistance = closestPairBruteForce(listOfPoints)
+    closestPair, closestDistance= closestPairBruteForce(listOfPoints)
 
-    for p in listOfPoints:
-        print(p)
 
     print(f"\nClosest Pair:")
     print(closestPair[0], closestPair[1])
-    print(closestDistance)
+    print(closestDistance, euclidCntBF)

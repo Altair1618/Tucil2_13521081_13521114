@@ -2,24 +2,24 @@ import matplotlib.pyplot as plt
 import randomGenerator
 import bruteforce
 
-def visualize3D(points, i1, i2):
+def visualize3D(points, pair):
     n = len(points)
     xAxis = []
     yAxis = []
     zAxis = []
 
     for i in range(n):
-        if i == i1 or i == i2: continue
+        if points[i] == pair[0] or points[i] == pair[1]: continue
         xAxis.append(points[i].coordinates[0])
         yAxis.append(points[i].coordinates[1])
         zAxis.append(points[i].coordinates[2])
 
     fig = plt.figure()
     ax = plt.axes(projection='3d')
-    ax.scatter3D(xAxis, yAxis, zAxis, c="Black", depthshade=False)
+    ax.scatter3D(xAxis, yAxis, zAxis, c="Blue", depthshade=False)
 
-    pair1 = points[i1].getCoor()
-    pair2 = points[i2].getCoor()
+    pair1 = pair[0].getCoor()
+    pair2 = pair[1].getCoor()
 
     ax.scatter3D(pair1[0], pair1[1], pair1[2], c="Red")
     ax.scatter3D(pair2[0], pair2[1], pair2[2], c="Red")
@@ -36,9 +36,9 @@ def visualize3D(points, i1, i2):
 if __name__ == "__main__":    
     num = int(input("Masukkan banyak titik: "))
     listPoint = randomGenerator.generateRandomPoints(num, 3)
-    idx1, idx2, cd = bruteforce.closestPairBruteForce(listPoint)
+    pair, cd = bruteforce.closestPairBruteForce(listPoint)
     print("Hasil Brute Force:")
-    print(listPoint[idx1], listPoint[idx2])
+    print(pair[0], pair[1])
     print(cd)
-    visualize3D(listPoint, idx1, idx2)
+    visualize3D(listPoint, pair)
 

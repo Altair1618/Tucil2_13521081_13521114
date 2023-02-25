@@ -1,15 +1,18 @@
 import bruteforce
 import randomGenerator
 
+euclidCntDnC = 0
 
 def closestPair(listOfPoints):
     # Base Case
     if len(listOfPoints) <= 3:
         return bruteforce.closestPairBruteForce(listOfPoints)
+    
+    # Euclidean counter
+    global euclidCntDnC
 
     # Recursive Case
-    # Sort by x values
-    listOfPoints.sort(key=lambda p: p.getCoordinateValue(0))
+    
 
     # Get The Middle Points
     midIndex = len(listOfPoints) // 2
@@ -44,6 +47,7 @@ def closestPair(listOfPoints):
             if candidatePoints[j].getCoordinateValue(1) - candidatePoints[i].getCoordinateValue(1) >= minDist:
                 break
             temp = candidatePoints[i].distanceBetween(candidatePoints[j])
+            euclidCntDnC += 1
             if temp < minDist:
                 minDist = temp
                 bestPair = [candidatePoints[i], candidatePoints[j]]
@@ -57,8 +61,8 @@ if __name__ == "__main__":
 
     listOfPoints = randomGenerator.generateRandomPoints(num, dim)
 
-    # ip1, ip2, closestDistance = closestPair(listOfPoints)
+    pair, closestDistance = closestPair(listOfPoints)
 
-    # print(f"\nClosest Pair:")
-    # print(listOfPoints[ip1], listOfPoints[ip2])
-    # print(closestDistance)
+    print(f"\nClosest Pair:")
+    print(pair[0], pair[1])
+    print(closestDistance)

@@ -2,7 +2,7 @@ import random
 from point import Point
 
 # Konstanta Maksimal Nilai Koordinat
-MAXN = 100
+MAXN = 1000
 
 
 def generateRandomPoints(num, dimension):
