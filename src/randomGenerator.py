@@ -13,7 +13,7 @@ def generateRandomPoints(num, dimension):
         while True:
             coordinates = []
             for j in range(dimension):
-                coordinates += [random.randint(-MAXN, MAXN)]
+                coordinates += [round(random.uniform(-MAXN, MAXN), 2)]
             if Point not in listPoint:
                 break
         listPoint += [Point(coordinates)]

@@ -23,11 +23,13 @@ The program can also perform visualization for 2D and 3D planes.
 </p>
 
 ## How To Run
-1. Make sure that `Python` and the `Matplotlib` module have been installed.
-2. In the main folder, run `python src/main.py` script
+To run the program, you can either
+1. Double click on the executable file `main.exe` in `bin/` folder, or
+2. Run `python src/main.py` script in command prompt
    ```
    python src/main.py
    ```
+note that you need to have `Python` and `Matplotlib` installed to run the script
 
 ## Author
 - Bagas Aryo Seto - 13521081

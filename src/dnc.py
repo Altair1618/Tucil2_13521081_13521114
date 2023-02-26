@@ -1,4 +1,5 @@
 import bruteforce
+import sort
 
 euclidCntDnC = 0
 
@@ -39,7 +40,7 @@ def closestPair(listOfPoints):
             candidatePoints += [p]
 
     # Sort by y value
-    candidatePoints.sort(key=lambda p: p.getCoordinateValue(1))
+    sort.quickSort(candidatePoints, 0, len(candidatePoints)-1, key=lambda p: p.getCoordinateValue(1))
 
     # Merging Process
     for i in range(len(candidatePoints) - 1):

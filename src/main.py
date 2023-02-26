@@ -1,16 +1,17 @@
+from point import Point
 import randomGenerator
 import bruteforce
 import dnc
 import visualization
-from point import Point
+import sort
 import time
 
 # Program Utama
 if __name__ == "__main__":
     print()
-    print("=============================================================")
-    print("                    Closest Pair Finder                      ")
-    print("=============================================================")
+    print("===============================================================================")
+    print("                              Closest Pair Finder                              ")
+    print("===============================================================================")
 
     # Input and validation
     # (BONUS 2) Function Generalization for Multiple Dimensions
@@ -29,7 +30,7 @@ if __name__ == "__main__":
     listOfPoints = randomGenerator.generateRandomPoints(num, dim)
 
     # Sort by x values
-    listOfPoints.sort(key=lambda p: p.getCoordinateValue(0))
+    sort.quickSort(listOfPoints, 0, num-1, key=lambda p: p.getCoordinateValue(0))
 
     # Get the result using Brute Force Algorithm
     t = time.time()
@@ -42,7 +43,7 @@ if __name__ == "__main__":
     dncTime = time.time() - t    
 
     # Output result
-    pad = max(18, max(len(str(dncPairs[0])), len(str(dncPairs[1])))) + 1
+    pad = max(27, max(len(str(dncPairs[0])), len(str(dncPairs[1])))) + 1
     print("\n")
     print("                   | {: <{}}|  Divide and Conquer".format("Brute Force", pad))
     print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
