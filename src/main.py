@@ -60,4 +60,8 @@ if __name__ == "__main__":
         vis = input("\nVisualize 3 Dimensional Plane? (Y/y) : ")
         if vis == 'y' or vis == 'Y':
             visualization.visualize3D(listOfPoints, dncPairs)
+    if dim == 2:
+        vis = input("\nVisualize 2 Dimensional Plane? (Y/y) : ")
+        if vis == 'y' or vis == 'Y':
+            visualization.visualize2D(listOfPoints, dncPairs)
     print()

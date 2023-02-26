@@ -2,7 +2,6 @@ import bruteforce
 
 euclidCntDnC = 0
 
-
 def closestPair(listOfPoints):
     # Base Case
     if len(listOfPoints) <= 3:

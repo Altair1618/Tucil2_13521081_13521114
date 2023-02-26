@@ -33,6 +33,34 @@ def visualize3D(points, pair):
     ax.set_zlabel('z')
     plt.show()
 
+def visualize2D(points, pair):
+    n = len(points)
+    xAxis = []
+    yAxis = []
+
+    for i in range(n):
+        if points[i] == pair[0] or points[i] == pair[1]: continue
+        xAxis.append(points[i].coordinates[0])
+        yAxis.append(points[i].coordinates[1])
+
+    fig = plt.figure()
+    ax = plt.axes()
+    ax.scatter(xAxis, yAxis, c="Blue")
+
+    pair1 = pair[0].getCoordinates()
+    pair2 = pair[1].getCoordinates()
+
+    ax.scatter(pair1[0], pair1[1], c="Red")
+    ax.scatter(pair2[0], pair2[1], c="Red")
+
+    ax.text(pair1[0], pair1[1], "(%d,%d)" % (pair1[0], pair1[1]), size='small', va='bottom', ha='center')
+    ax.text(pair2[0], pair2[1], "(%d,%d)" % (pair2[0], pair2[1]), size='small', va='top', ha='center')
+
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    plt.grid()
+    plt.show()
+
 
 if __name__ == "__main__":    
     num = int(input("Masukkan banyak titik: "))
