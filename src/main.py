@@ -7,53 +7,57 @@ import time
 
 # Program Utama
 if __name__ == "__main__":
-    print("========================================")
-    print("        Pencari Titik Terdekat")
-    print("========================================")
+    print()
+    print("=============================================================")
+    print("                    Closest Pair Finder                      ")
+    print("=============================================================")
 
-    # Input dan validasi
-    dim = int(input("\nMasukkan dimensi titik: "))
+    # Input and validation
+    # (BONUS 2) Function Generalization for Multiple Dimensions
+    dim = int(input("\nEnter Point Dimension   : "))
     while dim < 2:
-        print("Dimensi tidak valid, Dimensi harus lebih dari 1.\n")
-        dim = int(input("Masukkan dimensi titik: "))
-    num = int(input("Masukkan jumlah titik: "))
+        print("Invalid Input! Dimension must be higher than 1.\n")
+        dim = int(input("Enter Point Dimension   : "))
+    
+    num = int(input("Enter Number of Points  : "))
     while num < 2:
-        print("Jumalh titik tidak valid, jumlah titik harus lebih dari 1.\n")
-        num = int(input("Masukkan jumlah titik: "))
+        print("Invalid input! There must be more than 1 point.\n")
+        num = int(input("Enter Number of Points  : "))
     
 
-    # Menghasilkan kumpulan titik random
+    # Generate N random points
     listOfPoints = randomGenerator.generateRandomPoints(num, dim)
 
     # Sort by x values
     listOfPoints.sort(key=lambda p: p.getCoordinateValue(0))
 
-    t1 = time.time()
-    bfPairs, bfClosestDistance = bruteforce.closestPairBruteForce(listOfPoints)
-    t2 = time.time()
+    # Get the result using Brute Force Algorithm
+    t = time.time()
+    bfPairs, bfDist = bruteforce.closestPairBruteForce(listOfPoints)
+    bfTime = time.time() - t
 
-    print("\n========================================")
-    print("\nHasil Brute Force:")
-    print(bfPairs[0], bfPairs[1])
-    print("Jarak:", bfClosestDistance)
-    print("Banyak perhitungan euclidean:", bruteforce.euclidCntBF)
-    print("Waktu yang dibutuhkan:", t2 - t1, "s")
+    # Get the result using Divide and Conquer Algorithm
+    t = time.time()
+    dncPairs, dncDist = dnc.closestPair(listOfPoints)
+    dncTime = time.time() - t    
 
-    t1 = time.time()
-    dncPairs, dncClosestDistance = dnc.closestPair(listOfPoints)
-    t2 = time.time()
+    # Output result
+    pad = max(18, max(len(str(dncPairs[0])), len(str(dncPairs[1])))) + 1
+    print("\n")
+    print("                   | {: <{}}|  Divide and Conquer".format("Brute Force", pad))
+    print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
+    print("Pairs              | {: <{}}| {}".format(str(bfPairs[0]), pad, str(dncPairs[0])))
+    print("                   | {: <{}}| {}".format(str(bfPairs[1]), pad, str(dncPairs[1])))
+    print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
+    print("Distance           | {: <{}}| {}".format(str(bfDist)[:pad-1], pad, str(dncDist)[:pad-1]))
+    print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
+    print("Calculation Amount | {: <{}}| {}".format(str(bruteforce.euclidCntBF)[:pad-1], pad, str(dnc.euclidCntDnC)[:pad-1]))
+    print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
+    print("Time Taken         | {: <{}}| {}".format(str(bfTime)[:pad-1], pad, str(dncTime)[:pad-1]))
 
-    print("\n========================================")
-    print("\nHasil Divide and Conquer:")
-    print(dncPairs[0], dncPairs[1])
-    print("Jarak:", dncClosestDistance)
-    print("Banyak perhitungan euclidean:", dnc.euclidCntDnC)
-    print("Waktu yang dibutuhkan:", t2 - t1, "s")
-
+    # (BONUS 1) Visualize for 3 Dimensional Input
     if dim == 3:
-        print("\n========================================")
-        v = input("\nMasukkan (Y/y) untuk visualisasi bidang 3D: ")
-        if v == 'y' or v == "Y":
+        vis = input("\nVisualize 3 Dimensional Plane? (Y/y) : ")
+        if vis == 'y' or vis == 'Y':
             visualization.visualize3D(listOfPoints, dncPairs)
-    
-    print("\n========================================")
+    print()

@@ -22,9 +22,6 @@ def visualize3D(points, pair):
     pair1 = pair[0].getCoordinates()
     pair2 = pair[1].getCoordinates()
 
-    print(pair1)
-    print(pair2)
-
     ax.scatter3D(pair1[0], pair1[1], pair1[2], c="Red")
     ax.scatter3D(pair2[0], pair2[1], pair2[2], c="Red")
 
