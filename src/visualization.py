@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import randomGenerator
 import bruteforce
 
+
 def visualize3D(points, pair):
     n = len(points)
     xAxis = []
@@ -18,14 +19,17 @@ def visualize3D(points, pair):
     ax = plt.axes(projection='3d')
     ax.scatter3D(xAxis, yAxis, zAxis, c="Blue", depthshade=False)
 
-    pair1 = pair[0].getCoor()
-    pair2 = pair[1].getCoor()
+    pair1 = pair[0].getCoordinates()
+    pair2 = pair[1].getCoordinates()
+
+    print(pair1)
+    print(pair2)
 
     ax.scatter3D(pair1[0], pair1[1], pair1[2], c="Red")
     ax.scatter3D(pair2[0], pair2[1], pair2[2], c="Red")
 
-    ax.text(pair1[0], pair1[1], pair1[2], "(%d,%d,%d)" % pair1, size='small', va='bottom', ha='center')
-    ax.text(pair2[0], pair2[1], pair2[2], "(%d,%d,%d)" % pair2, size='small', va='top', ha='center')
+    ax.text(pair1[0], pair1[1], pair1[2], "(%d,%d,%d)" % (pair1[0], pair1[1], pair1[2]), size='small', va='bottom', ha='center')
+    ax.text(pair2[0], pair2[1], pair2[2], "(%d,%d,%d)" % (pair2[0], pair2[1], pair2[2]), size='small', va='top', ha='center')
 
     ax.set_xlabel('x')
     ax.set_ylabel('y')
