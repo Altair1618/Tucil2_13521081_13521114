@@ -23,12 +23,15 @@ class Point:
             val += (self.coordinates[i] - other.coordinates[i]) ** 2
 
         return val ** 0.5
+
+    def getCoordinates(self):
+        return self.coordinates
     
     def getCoordinateValue(self, index):
         return self.coordinates[index]
     
-    def getCoor(self):
-        return (self.coordinates[0], self.coordinates[1], self.coordinates[2])
+    def getDimension(self):
+        return self.dimension
     
 
 
