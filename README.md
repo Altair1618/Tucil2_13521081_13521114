@@ -13,7 +13,14 @@ The program can also perform visualization for 2D and 3D planes.
 
 ## Screenshots
 ![alt-text-1](doc/Screenshots/pair3D.png "3D Pair") ![alt-text-2](doc/Screenshots/vis3D.png "3D Visualization")
+<p align="center">
+  3D Closest Pair and Visualization
+</p>
+
 ![alt-text-1](doc/Screenshots/pair2D.png "2D Pair") ![alt-text-2](doc/Screenshots/vis2D.png "2D Visualization")
+<p align="center">
+  2D Closest Pair and Visualization
+</p>
 
 ## How To Run
 1. Make sure that `Python` and the `Matplotlib` module have been installed.
