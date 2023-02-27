@@ -31,6 +31,6 @@ To run the program, you can either
    ```
 note that you need to have `Python` and `Matplotlib` installed to run the script
 
-## Author
-- Bagas Aryo Seto - 13521081
-- Farhan Nabil Suryono - 13521114
+## Authors
+- Bagas Aryo Seto - 13521081 [@bagas003](https://github.com/bagas003)
+- Farhan Nabil Suryono - 13521114 [@Altair1618](https://github.com/Altair1618)
