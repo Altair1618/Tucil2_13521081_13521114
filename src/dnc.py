@@ -2,21 +2,26 @@ import bruteforce
 import sort
 
 euclidCntDnC = 0
+euclidCntDnCInBf = 0
 
 def closestPair(listOfPoints):
-    # Base Case
-    if len(listOfPoints) <= 3:
-        return bruteforce.closestPairBruteForce(listOfPoints)
-
     # Euclidean counter
     global euclidCntDnC
+    global euclidCntDnCInBf
+
+    n = len(listOfPoints)
+    
+    # Base Case
+    if n <= 3:
+        euclidCntDnCInBf += (n * (n - 1)) / 2
+        return bruteforce.closestPairBruteForce(listOfPoints)
 
     # Recursive Case
     # Get The Dimension
     dim = listOfPoints[0].getDimension()
 
     # Get The Middle Points
-    midIndex = len(listOfPoints) // 2
+    midIndex = n // 2
 
     # Get Divided Points
     leftPoints = listOfPoints[:midIndex]
