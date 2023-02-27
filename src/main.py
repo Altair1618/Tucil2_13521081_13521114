@@ -52,7 +52,7 @@ if __name__ == "__main__":
     print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
     print("Distance           | {: <{}}| {}".format(str(bfDist)[:pad-1], pad, str(dncDist)[:pad-1]))
     print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
-    print("Calculation Amount | {: <{}}| {}".format(str(bruteforce.euclidCntBF)[:pad-1], pad, str(dnc.euclidCntDnC)[:pad-1]))
+    print("Calculation Amount | {: <{}}| {}".format(str(bruteforce.euclidCntBF - dnc.euclidCntDnCInBf)[:pad-1], pad, str(dnc.euclidCntDnC + dnc.euclidCntDnCInBf)[:pad-1]))
     print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
     print("Time Taken         | {: <{}}| {}".format(str(bfTime)[:pad-1], pad, str(dncTime)[:pad-1]))
 
