@@ -22,15 +22,22 @@ def visualize3D(points, pair):
     pair1 = pair[0].getCoordinates()
     pair2 = pair[1].getCoordinates()
 
+    if (pair2[2] < pair1[2]):
+        pair1, pair2 = pair2, pair1
+    
+    ax.set_title("3D VISUALIZATION")
+
     ax.scatter3D(pair1[0], pair1[1], pair1[2], c="Red")
     ax.scatter3D(pair2[0], pair2[1], pair2[2], c="Red")
 
-    ax.text(pair1[0], pair1[1], pair1[2], "(%d,%d,%d)" % (pair1[0], pair1[1], pair1[2]), size='small', va='bottom', ha='center')
-    ax.text(pair2[0], pair2[1], pair2[2], "(%d,%d,%d)" % (pair2[0], pair2[1], pair2[2]), size='small', va='top', ha='center')
+    ax.plot((pair1[0], pair2[0]), (pair1[1], pair2[1]), (pair1[2], pair2[2]), c="Red")
 
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
-    ax.set_zlabel('z')
+    ax.text(pair1[0], pair1[1], pair1[2], "(%.1f,%.1f,%.1f)" % (pair1[0], pair1[1], pair1[2]), size='small', va='top', ha='center')
+    ax.text(pair2[0], pair2[1], pair2[2], "(%.1f,%.1f,%.1f)" % (pair2[0], pair2[1], pair2[2]), size='small', va='bottom', ha='center')
+
+    ax.set_xlabel('X-Axis')
+    ax.set_ylabel('Y-Axis')
+    ax.set_zlabel('Z-Axis')
     plt.show()
 
 def visualize2D(points, pair):
@@ -50,14 +57,21 @@ def visualize2D(points, pair):
     pair1 = pair[0].getCoordinates()
     pair2 = pair[1].getCoordinates()
 
+    if (pair2[1] < pair1[1]):
+        pair1, pair2 = pair2, pair1
+    
+    ax.set_title("2D VISUALIZATION")
+
     ax.scatter(pair1[0], pair1[1], c="Red")
     ax.scatter(pair2[0], pair2[1], c="Red")
 
-    ax.text(pair1[0], pair1[1], "(%d,%d)" % (pair1[0], pair1[1]), size='small', va='bottom', ha='center')
-    ax.text(pair2[0], pair2[1], "(%d,%d)" % (pair2[0], pair2[1]), size='small', va='top', ha='center')
+    ax.plot((pair1[0], pair2[0]), (pair1[1], pair2[1]), c="Red")
 
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
+    ax.text(pair1[0], pair1[1], "(%.1f,%.1f)" % (pair1[0], pair1[1]), size='small', va='top', ha='center')
+    ax.text(pair2[0], pair2[1], "(%.1f,%.1f)" % (pair2[0], pair2[1]), size='small', va='bottom', ha='center')
+
+    ax.set_xlabel('X-Axis')
+    ax.set_ylabel('Y-Axis')
     plt.grid()
     plt.show()
 

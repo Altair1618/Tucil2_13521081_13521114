@@ -43,18 +43,43 @@ if __name__ == "__main__":
     dncTime = time.time() - t    
 
     # Output result
-    pad = max(27, max(len(str(dncPairs[0])), len(str(dncPairs[1])))) + 1
+    totlen = max(27, max(len(str(dncPairs[0])), len(str(dncPairs[1])))) + 1
+    pad = min(totlen, 70)
+
     print("\n")
     print("                   | {: <{}}|  Divide and Conquer".format("Brute Force", pad))
     print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
-    print("Pairs              | {: <{}}| {}".format(str(bfPairs[0]), pad, str(dncPairs[0])))
-    print("                   | {: <{}}| {}".format(str(bfPairs[1]), pad, str(dncPairs[1])))
+    if totlen == pad:
+        print("Pairs              | {: <{}}| {}".format(str(bfPairs[0]), pad, str(dncPairs[0])))
+        print("                   | {: <{}}| {}".format(str(bfPairs[1]), pad, str(dncPairs[1])))
+    else:
+        bf1, bf2 = str(bfPairs[0]), str(bfPairs[1])
+        dc1, dc2 = str(dncPairs[0]), str(dncPairs[1])
+        start1, start2 = 0, 0
+        end1, end2 = bf1.rfind(',',start1,pad)+1, dc1.rfind(',',start2,pad)+1
+        print("Pairs              | {: <{}}| {}".format(bf1[start1:end1], pad, dc1[start2:end2]))
+        while end1 < totlen and end2 < totlen:
+            start1, start2 = end1, end2
+            end1 = bf1.rfind(',',start1,start1+pad)+1 if totlen-start1 > pad else totlen
+            end2 = dc1.rfind(',',start2,start2+pad)+1 if totlen-start2 > pad else totlen
+            print("                   | {: <{}}| {}".format(bf1[start1:end1], pad, dc1[start2:end2]))
+        start1, start2 = 0, 0
+        end1, end2 = bf2.rfind(',',start1,pad)+1, dc2.rfind(',',start2,pad)+1
+        print("                   | {: <{}}| {}".format(bf2[start1:end1], pad, dc2[start2:end2]))
+        while end1 < totlen and end2 < totlen:
+            start1, start2 = end1, end2
+            end1 = bf2.rfind(',',start1,start1+pad)+1 if totlen-start1 > pad else totlen
+            end2 = dc2.rfind(',',start2,start2+pad)+1 if totlen-start2 > pad else totlen
+            print("                   | {: <{}}| {}".format(bf2[start1:end1], pad, dc2[start2:end2]))
     print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
     print("Distance           | {: <{}}| {}".format(str(bfDist)[:pad-1], pad, str(dncDist)[:pad-1]))
     print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
     print("Calculation Amount | {: <{}}| {}".format(str(bruteforce.euclidCntBF)[:pad-1], pad, str(dnc.euclidCntDnC)[:pad-1]))
     print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
-    print("Time Taken         | {: <{}}| {}".format(str(bfTime)[:pad-1], pad, str(dncTime)[:pad-1]))
+    print("Time Taken (s)     | {: <{}}| {}".format(str(bfTime)[:pad-1], pad, str(dncTime)[:pad-1]))
+
+    print(bfPairs[0])
+    print(bfPairs[1])
 
     # (BONUS 1) Visualize for 3 Dimensional Input
     if dim == 3:
