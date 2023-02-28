@@ -1,6 +1,7 @@
 import bruteforce
 import sort
 import randomGenerator
+from point import Point
 
 euclidCntDnC = 0
 euclidCntDnCInBf = 0
@@ -85,11 +86,11 @@ def closestPair(listOfPoints):
 
 
 if __name__ == "__main__":
-    dim = int(input("Masukkan dimensi titik: "))
-    num = int(input("Masukkan jumlah titik: "))
-
-    listOfPoints = randomGenerator.generateRandomPoints(num, dim)
-    # listOfPoints = [Point([1, 1]), Point([1, 1]), Point([3, 4]), Point([3, 4])]
+    # dim = int(input("Masukkan dimensi titik: "))
+    # num = int(input("Masukkan jumlah titik: "))
+    
+    # listOfPoints = randomGenerator.generateRandomPoints(num, dim)
+    listOfPoints = [Point([1, 1]), Point([3, 4]), Point([999, 7]), Point([200, 10])]
     closestPairs, closestDistance = closestPair(listOfPoints)
 
     print(f"\nClosest Pair:")
