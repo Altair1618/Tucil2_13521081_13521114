@@ -31,6 +31,11 @@ def main():
     # Sort by x values
     sort.quickSort(listOfPoints, 0, num - 1, key=lambda p: p.getCoordinateValue(0))
 
+    # Reset calculation counter
+    bruteforce.euclidCntBF = 0
+    dnc.euclidCntDnC = 0
+    dnc.euclidCntDnCInBf = 0
+
     # Get the result using Brute Force Algorithm
     t = time.time()
     bfPairs, bfDist = bruteforce.closestPairBruteForce(listOfPoints)
@@ -42,6 +47,7 @@ def main():
     dncTime = time.time() - t
 
     # Output result
+    # aga panjang emg mmf yh
     totlen = max(27, max(len(str(dncPairs[0])), len(str(dncPairs[1])))) + 1
     pad = min(totlen, 70)
 
@@ -77,9 +83,6 @@ def main():
     print("-------------------+-{}+-{}".format("-" * pad, "-" * pad))
     print("Time Taken (s)     | {: <{}}| {}".format(str(bfTime)[:pad - 1], pad, str(dncTime)[:pad - 1]))
 
-    print(bfPairs[0])
-    print(bfPairs[1])
-
     # (BONUS 1) Visualize for 3 Dimensional Input
     if dim == 3:
         vis = input("\nVisualize 3 Dimensional Plane? (Y/y) : ")
@@ -87,7 +90,7 @@ def main():
             visualization.visualize3D(listOfPoints, dncPairs)
     if dim == 2:
         vis = input("\nVisualize 2 Dimensional Plane? (Y/y) : ")
-        if vis == 'y' or vis == 'Y':
+        if vis.lower().find("y") != -1:
             visualization.visualize2D(listOfPoints, dncPairs)
     print()
 
@@ -109,5 +112,9 @@ def debug():
 
 # Program Utama
 if __name__ == "__main__":
-    main()
-    # debug()
+    while True:
+        main()
+        ex = input("Exit program? (Y/N) : ")
+        if ex.lower().find("y") != -1: 
+            print("\nbye~ (^.^)/")
+            break

@@ -24,7 +24,7 @@ The program can also perform visualization for 2D and 3D planes.
 
 ## How To Run
 To run the program, you can either
-1. Double click on the executable file `main.exe` in `bin/` folder, or
+1. Double click on the executable file `ClosestPairFinder.exe` in `bin/` folder (Windows only), or
 2. Run `python src/main.py` script in command prompt
    ```
    python src/main.py

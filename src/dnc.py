@@ -64,14 +64,6 @@ def closestPair(listOfPoints):
             if not pos:
                 continue
 
-            # pos = True
-            # for k in range(2, dim):
-            #     if abs(candidatePoints[j].getCoordinateValue(k) - candidatePoints[i].getCoordinateValue(k)) >= minDist:
-            #         pos = False
-            #         break
-            # if not pos:
-            #     continue
-
             temp = candidatePoints[i].distanceBetween(candidatePoints[j])
             euclidCntDnC += 1
             if temp < minDist:
