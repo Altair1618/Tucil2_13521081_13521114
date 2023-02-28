@@ -26,7 +26,7 @@ if __name__ == "__main__":
         num = int(input("Enter Number of Points  : "))
     
 
-    # Generate N random points
+    # Generate N random points    
     listOfPoints = randomGenerator.generateRandomPoints(num, dim)
 
     # Sort by x values
@@ -55,21 +55,20 @@ if __name__ == "__main__":
     else:
         bf1, bf2 = str(bfPairs[0]), str(bfPairs[1])
         dc1, dc2 = str(dncPairs[0]), str(dncPairs[1])
-        start1, start2 = 0, 0
-        end1, end2 = bf1.rfind(',',start1,pad)+1, dc1.rfind(',',start2,pad)+1
-        print("Pairs              | {: <{}}| {}".format(bf1[start1:end1], pad, dc1[start2:end2]))
-        while end1 < totlen and end2 < totlen:
+        start1, start2, end1, end2 = 0, 0, 0, 0
+        while end1 < len(bf1) or end2 < len(dc1):
             start1, start2 = end1, end2
-            end1 = bf1.rfind(',',start1,start1+pad)+1 if totlen-start1 > pad else totlen
-            end2 = dc1.rfind(',',start2,start2+pad)+1 if totlen-start2 > pad else totlen
-            print("                   | {: <{}}| {}".format(bf1[start1:end1], pad, dc1[start2:end2]))
-        start1, start2 = 0, 0
-        end1, end2 = bf2.rfind(',',start1,pad)+1, dc2.rfind(',',start2,pad)+1
-        print("                   | {: <{}}| {}".format(bf2[start1:end1], pad, dc2[start2:end2]))
-        while end1 < totlen and end2 < totlen:
+            end1 = bf1.rfind(',',start1,start1+pad)+1 if len(bf1)-start1 > pad else len(bf1)
+            end2 = dc1.rfind(',',start2,start2+pad)+1 if len(dc1)-start2 > pad else len(dc1)
+            if start1 == 0 and start2 == 0:
+                print("Pairs              | {: <{}}| {}".format(bf1[start1:end1], pad, dc1[start2:end2]))
+            else:
+                print("                   | {: <{}}| {}".format(bf1[start1:end1], pad, dc1[start2:end2]))
+        start1, start2, end1, end2 = 0, 0, 0, 0
+        while end1 < len(bf2) or end2 < len(dc2):
             start1, start2 = end1, end2
-            end1 = bf2.rfind(',',start1,start1+pad)+1 if totlen-start1 > pad else totlen
-            end2 = dc2.rfind(',',start2,start2+pad)+1 if totlen-start2 > pad else totlen
+            end1 = bf2.rfind(',',start1,start1+pad)+1 if len(bf2)-start1 > pad else len(bf2)
+            end2 = dc2.rfind(',',start2,start2+pad)+1 if len(dc2)-start2 > pad else len(dc2)
             print("                   | {: <{}}| {}".format(bf2[start1:end1], pad, dc2[start2:end2]))
     print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
     print("Distance           | {: <{}}| {}".format(str(bfDist)[:pad-1], pad, str(dncDist)[:pad-1]))
@@ -77,9 +76,6 @@ if __name__ == "__main__":
     print("Calculation Amount | {: <{}}| {}".format(str(bruteforce.euclidCntBF - dnc.euclidCntDnCInBf)[:pad-1], pad, str(dnc.euclidCntDnC + dnc.euclidCntDnCInBf)[:pad-1]))
     print("-------------------+-{}+-{}".format("-"*pad, "-"*pad))
     print("Time Taken (s)     | {: <{}}| {}".format(str(bfTime)[:pad-1], pad, str(dncTime)[:pad-1]))
-
-    print(bfPairs[0])
-    print(bfPairs[1])
 
     # (BONUS 1) Visualize for 3 Dimensional Input
     if dim == 3:
