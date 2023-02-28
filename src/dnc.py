@@ -19,6 +19,7 @@ def closestPair(listOfPoints):
     # Recursive Case
     # Get The Dimension
     dim = listOfPoints[0].getDimension()
+    sqrtdim = dim ** 0.5
 
     # Get The Middle Points
     midIndex = n // 2
@@ -52,13 +53,24 @@ def closestPair(listOfPoints):
         for j in range(i + 1, len(candidatePoints)):
             if candidatePoints[j].getCoordinateValue(1) - candidatePoints[i].getCoordinateValue(1) >= minDist:
                 break
+
             pos = True
-            for k in range(2, dim):
-                if abs(candidatePoints[j].getCoordinateValue(k) - candidatePoints[i].getCoordinateValue(k)) >= minDist:
+            mhtDist = 0
+            for k in range(dim):
+                mhtDist += abs(candidatePoints[j].getCoordinateValue(k) - candidatePoints[i].getCoordinateValue(k))
+                if mhtDist > minDist * sqrtdim:
                     pos = False
                     break
             if not pos:
                 continue
+
+            # pos = True
+            # for k in range(2, dim):
+            #     if abs(candidatePoints[j].getCoordinateValue(k) - candidatePoints[i].getCoordinateValue(k)) >= minDist:
+            #         pos = False
+            #         break
+            # if not pos:
+            #     continue
 
             temp = candidatePoints[i].distanceBetween(candidatePoints[j])
             euclidCntDnC += 1
