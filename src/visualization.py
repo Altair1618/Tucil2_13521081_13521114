@@ -82,7 +82,7 @@ def visualize2D(points, pairs):
 
         ax.plot((pair1[0], pair2[0]), (pair1[1], pair2[1]), c="Red")
 
-        if pair1[1] > pair2[1]: va1="top"; va2="bottom"
+        if pair1[1] < pair2[1]: va1="top"; va2="bottom"
         else : va1="bottom"; va2="top"
 
         if not labeled[pairPoints.index(pairs[i][0])]:

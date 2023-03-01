@@ -5,7 +5,9 @@ Find Closest Pair of Points in Multidimensional Plane
 ## Description
 This program uses both `Divide and Conquer` and `Brute Force` algorithms to provide two different approaches for finding the closest pair of points in a multidimensional plane.
 
-The input parameters of the program consist of `d`, which represent the size of the plane's dimension and `n`, which represents the number of points. The program will then generate `n` randomly located points in a `d`-dimensional plane.
+Program can accept both direct user input and file input.
+The input parameters of direct user input consist of `d`, which represent the size of the plane's dimension and `n`, which represents the number of points. The program will then generate `n` randomly located points in a `d`-dimensional plane. 
+File input which accepted by the program must be containing `d` as it's first row, `n` as it's second row, then the next `n` row consisting point coordinate in `d`-dimensional plane.
 
 Then the program will search for the closest pair of points using the `Brute Force` and `Divide and Conquer` algorithms, and compare their performance.
 
@@ -22,6 +24,11 @@ The program can also perform visualization for 2D and 3D planes.
   2D Closest Pair and Visualization
 </p>
 
+![alt-text-1](doc/Screenshots/pairMul.png "Multiple Pairs") ![alt-text-2](doc/Screenshots/visMul.png "3D Visualization")
+<p align="center">
+  File input example
+</p>
+
 ## How To Run
 To run the program, you can either
 1. Double click on the executable file `ClosestPairFinder.exe` in `bin/` folder (Windows only), or
@@ -30,6 +37,8 @@ To run the program, you can either
    python src/main.py
    ```
 note that you need to have `Python` and `Matplotlib` installed to run the script
+
+
 
 ## Authors
 - Bagas Aryo Seto - 13521081 [@bagas003](https://github.com/bagas003)
