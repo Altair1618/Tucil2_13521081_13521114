@@ -2,8 +2,7 @@ from point import Point
 
 
 def readFile(fileName):
-    print(fileName.encode('unicode_escape').decode())
-    f = open(fileName.encode('unicode_escape').decode(), 'r')
+    f = open(fileName.encode('unicode_escape').decode().replace("\"", ""), 'r')
     raw = f.readlines()
 
     for i in range(len(raw)):
