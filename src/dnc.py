@@ -1,8 +1,11 @@
 import bruteforce
 import sort
+import randomGenerator
+from point import Point
 
 euclidCntDnC = 0
 euclidCntDnCInBf = 0
+
 
 def closestPair(listOfPoints):
     # Euclidean counter
@@ -29,11 +32,16 @@ def closestPair(listOfPoints):
     rightPoints = listOfPoints[midIndex:]
 
     # Get Closest Pair in Both Side
-    leftPair, leftDistance = closestPair(leftPoints)
-    rightPair, rightDistance = closestPair(rightPoints)
+    leftPairs, leftDistance = closestPair(leftPoints)
+    rightPairs, rightDistance = closestPair(rightPoints)
 
     # Get Minimum Distance from Both Closest Pair
-    bestPair = leftPair if leftDistance < rightDistance else rightPair
+    if leftDistance < rightDistance:
+        bestPairs = leftPairs
+    elif leftDistance > rightDistance:
+        bestPairs = rightPairs
+    else:
+        bestPairs = leftPairs + rightPairs
     minDist = min(leftDistance, rightDistance)
 
     # Get the Absis Coordinate of the Center
@@ -42,7 +50,7 @@ def closestPair(listOfPoints):
     # Filter the Points That Distance to Center Smaller than min_dist
     candidatePoints = []
     for p in listOfPoints:
-        if abs(p.getCoordinateValue(0) - centerAbsis) < minDist:
+        if abs(p.getCoordinateValue(0) - centerAbsis) <= minDist:
             candidatePoints += [p]
 
     # Sort by y value
@@ -51,7 +59,7 @@ def closestPair(listOfPoints):
     # Merging Process
     for i in range(len(candidatePoints) - 1):
         for j in range(i + 1, len(candidatePoints)):
-            if candidatePoints[j].getCoordinateValue(1) - candidatePoints[i].getCoordinateValue(1) >= minDist:
+            if candidatePoints[j].getCoordinateValue(1) - candidatePoints[i].getCoordinateValue(1) > minDist:
                 break
 
             pos = True
@@ -68,6 +76,24 @@ def closestPair(listOfPoints):
             euclidCntDnC += 1
             if temp < minDist:
                 minDist = temp
-                bestPair = [candidatePoints[i], candidatePoints[j]]
+                bestPairs = [[candidatePoints[i], candidatePoints[j]]]
+            elif temp == minDist:
+                addedPair = [candidatePoints[i], candidatePoints[j]]
+                if addedPair not in bestPairs and [candidatePoints[j], candidatePoints[i]] not in bestPairs:
+                    bestPairs += [addedPair]
 
-    return bestPair, minDist
+    return bestPairs, minDist
+
+
+if __name__ == "__main__":
+    # dim = int(input("Masukkan dimensi titik: "))
+    # num = int(input("Masukkan jumlah titik: "))
+    
+    # listOfPoints = randomGenerator.generateRandomPoints(num, dim)
+    listOfPoints = [Point([1, 1]), Point([3, 4]), Point([999, 7]), Point([200, 10])]
+    closestPairs, closestDistance = closestPair(listOfPoints)
+
+    print(f"\nClosest Pair:")
+    for pair in closestPairs:
+        print(pair)
+    print(closestDistance, euclidCntDnC + euclidCntDnCInBf)
