@@ -2,7 +2,8 @@ from point import Point
 
 
 def readFile(fileName):
-    f = open(fileName, 'r')
+    print(fileName.encode('unicode_escape').decode())
+    f = open(fileName.encode('unicode_escape').decode(), 'r')
     raw = f.readlines()
 
     for i in range(len(raw)):
@@ -22,5 +23,5 @@ def readFile(fileName):
 
 
 if __name__ == "__main__":
-    listOfPoints = readFile("testInput1.txt")
+    listOfPoints = readFile("D:\FARHAN\Kuliah\Semester 4\Stima\Tugas\Tucil2_13521081_13521114\test\testInput1.txt")
     print(listOfPoints)

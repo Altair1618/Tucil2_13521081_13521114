@@ -6,6 +6,7 @@ import visualization
 import sort
 import time
 import fileReader
+import os
 
 
 def main():
@@ -20,9 +21,11 @@ def main():
     inp = input("\nInput using file> (Y/N): ")
     if inp.lower().find("y") != -1:
         fname = input("Enter file name (ex. test.txt): ")
-        try: listOfPoints = fileReader.readFile(f"test/{fname}")
+        try:
+            currentDir = os.path.dirname(os.path.realpath(__file__))
+            listOfPoints = fileReader.readFile(os.path.join(currentDir, f"../test/{fname}"))
         except:
-            try: listOfPoints = fileReader.readFile(f"../test/{fname}")
+            try: listOfPoints = fileReader.readFile(fname)
             except: 
                 print("invalid file name or invalid file content!\n")
                 return
