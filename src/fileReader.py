@@ -2,7 +2,7 @@ from point import Point
 
 
 def readFile(fileName):
-    f = open(f"../test/{fileName}", 'r')
+    f = open(fileName, 'r')
     raw = f.readlines()
 
     for i in range(len(raw)):

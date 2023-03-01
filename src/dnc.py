@@ -50,7 +50,7 @@ def closestPair(listOfPoints):
     # Filter the Points That Distance to Center Smaller than min_dist
     candidatePoints = []
     for p in listOfPoints:
-        if abs(p.getCoordinateValue(0) - centerAbsis) < minDist:
+        if abs(p.getCoordinateValue(0) - centerAbsis) <= minDist:
             candidatePoints += [p]
 
     # Sort by y value
@@ -59,7 +59,7 @@ def closestPair(listOfPoints):
     # Merging Process
     for i in range(len(candidatePoints) - 1):
         for j in range(i + 1, len(candidatePoints)):
-            if candidatePoints[j].getCoordinateValue(1) - candidatePoints[i].getCoordinateValue(1) >= minDist:
+            if candidatePoints[j].getCoordinateValue(1) - candidatePoints[i].getCoordinateValue(1) > minDist:
                 break
 
             pos = True
@@ -79,7 +79,7 @@ def closestPair(listOfPoints):
                 bestPairs = [[candidatePoints[i], candidatePoints[j]]]
             elif temp == minDist:
                 addedPair = [candidatePoints[i], candidatePoints[j]]
-                if addedPair not in bestPairs:
+                if addedPair not in bestPairs and [candidatePoints[j], candidatePoints[i]] not in bestPairs:
                     bestPairs += [addedPair]
 
     return bestPairs, minDist

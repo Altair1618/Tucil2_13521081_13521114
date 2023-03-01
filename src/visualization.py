@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 import randomGenerator
-import bruteforce
+import bruteforce, dnc
 from point import Point
+import fileReader
 
 
 def visualize3D(points, pairs):
@@ -36,7 +37,7 @@ def visualize3D(points, pairs):
 
         ax.plot((pair1[0], pair2[0]), (pair1[1], pair2[1]), (pair1[2], pair2[2]), c="Red")
 
-        if pair1[2] > pair2[2]: va1="top"; va2="bottom"
+        if pair1[2] < pair2[2]: va1="top"; va2="bottom"
         else : va1="bottom"; va2="top"
 
         if not labeled[pairPoints.index(pairs[i][0])]:
@@ -100,10 +101,13 @@ def visualize2D(points, pairs):
 if __name__ == "__main__":    
     # num = int(input("Masukkan banyak titik: "))
     # listPoint = randomGenerator.generateRandomPoints(num, 3)
-    listPoint = [Point([2,2]), Point([1,2]), Point([2,1]), Point([2,3]), Point([3,2]), Point([0,0])]
+    listPoint = fileReader.readFile("testInput1.txt")
+    pairs, cd = dnc.closestPair(listPoint)
+    print("Hasil dnc:")
+    print(pairs)
     pairs, cd = bruteforce.closestPairBruteForce(listPoint)
-    print("Hasil Brute Force:")
+    print("hasil bf:")
     print(pairs)
     print(cd)
-    visualize2D(listPoint, pairs)
-
+    print(listPoint)
+    visualize3D(listPoint, pairs)
